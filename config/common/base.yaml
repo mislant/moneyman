@@ -1,0 +1,12 @@
+id: 'accounting'
+basePath: !callable
+  name: dirname
+  args: !interpret $_SERVER['DOCUMENT_ROOT']
+bootstrap:
+  - log
+aliases: !subconf common/aliases
+timeZone: Asia/Almaty
+controllerNamespace: Moneyman\Controllers
+viewPath: '@app/resources/views'
+layoutPath: '@app/resources/layouts'
+components: !subconf common/components

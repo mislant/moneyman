@@ -1,0 +1,17 @@
+request:
+  cookieValidationKey: LPvaIkHkLq1uSK1TcFPP4dntWWIyfmq_
+cache:
+  class: yii\caching\FileCache
+errorHandler:
+  errorAction: site/error
+log:
+  traceLevel: !interpret 'YII_DEBUG ? 3 : 0'
+  targets:
+    - class: yii\log\FileTarget
+      levels:
+        - error
+        - warning
+urlManager:
+  enablePrettyUrl: true
+  showScriptName: false
+  rules: { }
