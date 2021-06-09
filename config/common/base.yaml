@@ -10,3 +10,4 @@ controllerNamespace: Moneyman\Controllers
 viewPath: '@app/resources/views'
 layoutPath: '@app/resources/layouts'
 components: !subconf common/components
+container: !env /container

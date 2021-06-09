@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Moneyman\App\Config\Yaml\Tag;
 
-use Moneyman\App\Config\Yaml\Tag\Processors\{CallableProcessor,
+use Moneyman\App\Config\Yaml\Tag\Processors\{
+    CallableProcessor,
+    ConcatenateProcessor,
     EnvironmentProcessor,
+    GetProcessor,
     InterpretProcessor,
     MergeProcessor,
     SubConfigsProcessor
@@ -49,7 +52,9 @@ final class TagProcessor implements TagProcessStrategy
             Tag::INTERPRET => InterpretProcessor::class,
             Tag::ENV => EnvironmentProcessor::class,
             Tag::SUB_CONF => SubConfigsProcessor::class,
-            Tag::MERGE => MergeProcessor::class
+            Tag::MERGE => MergeProcessor::class,
+            Tag::GET => GetProcessor::class,
+            Tag::CONCATENATE => ConcatenateProcessor::class
         ];
         $strategy = $map[$tag];
         return new $strategy();

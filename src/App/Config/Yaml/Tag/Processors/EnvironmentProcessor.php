@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Moneyman\App\Config\Yaml\Tag\Processors;
 
+use Moneyman\App\Config\Yaml\Tag\{TagProcessor, TagProcessStrategy};
 use Moneyman\App\Config\Configurator;
-use Moneyman\App\Config\Yaml\Tag\TagProcessor;
-use Moneyman\App\Config\Yaml\Tag\TagProcessStrategy;
 use Moneyman\App\Config\ConfigureException;
 use Moneyman\App\Config\Environment;
 
@@ -30,14 +29,14 @@ final class EnvironmentProcessor implements TagProcessStrategy
     {
         try {
             $envDir = Environment::current()->value();
-            return Configurator::$locator->compiler()->compile(
-                Configurator::$locator->config()->sub(
-                    "$envDir{$this->parsePath($value)}"
-                )
-            );
         } catch (\Exception) {
             throw new ConfigureException("Can't get environment!");
         }
+        return Configurator::$locator->compiler()->compile(
+            Configurator::$locator->config()->sub(
+                "$envDir{$this->parsePath($value)}"
+            )
+        );
     }
 
     /**
@@ -45,6 +44,7 @@ final class EnvironmentProcessor implements TagProcessStrategy
      * Value should compiles in path string
      *
      * @param mixed $value
+     *
      * @return string
      *
      * @throws ConfigureException

@@ -1,0 +1,18 @@
+definitions:
+  Moneyman\App\Cycle\SchemaManagerInterface:
+    class: Moneyman\App\Cycle\Schema\SchemaManager
+  Moneyman\App\Cycle\Schema\SchemaManager:
+    0: { }
+    1:
+      dbConfigs: !subconf dev/orm_config
+      finderOptions:
+        files: ~
+        name:
+          - [ TestClass.php ]
+        in: !concatenate
+          - !callable
+            name: dirname
+            args: !interpret $_SERVER['DOCUMENT_ROOT']
+          - /src
+  Psr\Cache\CacheItemPoolInterface:
+    class: Symfony\Component\Cache\Adapter\FilesystemAdapter

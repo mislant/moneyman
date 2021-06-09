@@ -10,7 +10,9 @@
     "yiisoft/arrays": "^1.0",
     "yiisoft/json": "^1.0",
     "psr/cache": "^2.0",
-    "symfony/cache": "^5.3"
+    "symfony/cache": "^5.3",
+    "cycle/orm": "^1.4",
+    "cycle/annotated": "^2.3"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

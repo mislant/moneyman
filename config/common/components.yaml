@@ -15,3 +15,6 @@ urlManager:
   enablePrettyUrl: true
   showScriptName: false
   rules: { }
+orm:
+  class: Moneyman\App\Cycle\CycleAdapter
+  dbConfigs: !env /orm_config

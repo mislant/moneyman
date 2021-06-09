@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Moneyman\App\Config\Yaml;
 
 use Moneyman\App\Config\CompilerInterface;
+use Moneyman\App\Config\ConfigureException;
 use Moneyman\App\Config\Yaml\Tag\TagProcessor;
 use Symfony\Component\Yaml\{Tag\TaggedValue, Yaml};
 
@@ -31,11 +32,7 @@ final class Compiler implements CompilerInterface
                     continue;
                 }
                 if (is_array($item)) {
-                    foreach ($item as &$part) {
-                        if ($part instanceof TaggedValue) {
-                            $part = (new TagProcessor($part->getTag()))->process($part->getValue());
-                        }
-                    }
+                    $this->deepCompile($item);
                 }
                 $out[$name] = $item;
             }
@@ -48,5 +45,26 @@ final class Compiler implements CompilerInterface
             }
         }
         return $out ?? [];
+    }
+
+    /**
+     * Makes deep compilation
+     *
+     * Goes through every element in array and it's elements
+     * to compile every configuration point
+     *
+     * @param $item
+     *
+     * @throws ConfigureException
+     */
+    private function deepCompile(&$item): void
+    {
+        foreach ($item as &$part) {
+            if ($part instanceof TaggedValue) {
+                $part = (new TagProcessor($part->getTag()))->process($part->getValue());
+            } elseif (is_array($part)) {
+                $this->deepCompile($part);
+            }
+        }
     }
 }

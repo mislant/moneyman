@@ -46,7 +46,9 @@ final class Bootstrap
             new Compiler(),
             new FilesystemAdapter()
         );
-        $result = $configurator->run();
+        $result = $configurator->run(
+            Environment::current()->is(EnvList::DEV)
+        );
         $configurator = null;
         return $result;
     }

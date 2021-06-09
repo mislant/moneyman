@@ -25,6 +25,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $orm = \Yii::$app->orm;
+        $orm->orm();
         return 'hello';
     }
 }

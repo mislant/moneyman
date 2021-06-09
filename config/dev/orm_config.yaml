@@ -1,0 +1,11 @@
+default: test
+databases:
+  test:
+    connection: pgsql
+connections:
+  pgsql:
+    driver: \Spiral\Database\Driver\Postgres\PostgresDriver
+    options:
+      connection: !get { key: dsn, from: !env /db }
+      username: !get { key: username, from: !env /db }
+      password: !get { key: password, from: !env /db }

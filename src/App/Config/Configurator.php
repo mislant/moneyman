@@ -82,6 +82,7 @@ final class Configurator
         if ($cacheItem->isHit() && !$forcedRebuild) {
             return $cacheItem->get();
         }
+
         $out = $this->compiler->compile($this->configs->main());
         $this->saveInCache($cacheItem, $out);
 

@@ -44,6 +44,10 @@ final class Tag
      * another file
      */
     public const SUB_CONF = 'subconf';
+    /**
+     * This tag helps to get some value from array
+     */
+    public const GET = 'get';
 
     /**
      * Returns list of tags
