@@ -74,7 +74,8 @@ final class FinderBuilder
     private function setOption(
         Finder $finder,
         string $method,
-        mixed $params): void
+        mixed $params
+    ): void
     {
         if (is_array($params)) {
             $finder->$method(...$params);

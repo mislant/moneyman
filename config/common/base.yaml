@@ -1,7 +1,9 @@
 id: 'accounting'
-basePath: !callable
-  name: dirname
-  args: !interpret $_SERVER['DOCUMENT_ROOT']
+basePath: !var
+  set: baseDir
+  value: !callable
+    name: dirname
+    args: !interpret $_SERVER['DOCUMENT_ROOT']
 bootstrap:
   - log
 aliases: !subconf common/aliases

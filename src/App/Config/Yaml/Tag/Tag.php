@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Moneyman\App\Config\Yaml\Tag;
 
+use ReflectionClass;
+
 /**
  * List of available tags
  *
@@ -48,6 +50,10 @@ final class Tag
      * This tag helps to get some value from array
      */
     public const GET = 'get';
+    /**
+     * This tag need to create global configuration variables
+     */
+    public const VARIABLE = 'var';
 
     /**
      * Returns list of tags
@@ -56,7 +62,7 @@ final class Tag
      */
     public static function list(): array
     {
-        $constants = (new \ReflectionClass(self::class))->getConstants();
+        $constants = (new ReflectionClass(self::class))->getConstants();
         return array_values($constants);
     }
 }

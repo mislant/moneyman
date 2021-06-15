@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Moneyman\App\Config\Yaml\Tag;
 
 use Moneyman\App\Config\Yaml\Tag\Processors\{
-    CallableProcessor,
     ConcatenateProcessor,
     EnvironmentProcessor,
-    GetProcessor,
+    SubConfigsProcessor,
     InterpretProcessor,
+    CallableProcessor,
+    VariableProcessor,
     MergeProcessor,
-    SubConfigsProcessor
+    GetProcessor,
 };
 use Moneyman\App\Config\ConfigureException;
 use Symfony\Component\Yaml\Tag\TaggedValue;
@@ -54,7 +55,8 @@ final class TagProcessor implements TagProcessStrategy
             Tag::SUB_CONF => SubConfigsProcessor::class,
             Tag::MERGE => MergeProcessor::class,
             Tag::GET => GetProcessor::class,
-            Tag::CONCATENATE => ConcatenateProcessor::class
+            Tag::CONCATENATE => ConcatenateProcessor::class,
+            Tag::VARIABLE => VariableProcessor::class
         ];
         $strategy = $map[$tag];
         return new $strategy();

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Moneyman\App\Cycle\Schema;
 
+use Moneyman\App\Cycle\CycleAdapter;
 use Cycle\ORM\{Schema, SchemaInterface};
 use Cycle\Schema\{
     Generator\GenerateRelations,
@@ -46,15 +47,7 @@ final class SchemaManager implements SchemaManagerInterface
     /**
      * Database configurations
      *
-     * <p>
-     * This should be array of configuration needed for
-     * DataBaseProviderInterface class. DataBaseConfig used as implementation
-     * of configurations.
-     * </p>
-     * __In this array you should specify next values:__<br>
-     * `default` -> string: name of default database<br>
-     * `databases` -> array with databases and its connections<br>
-     * `connections` -> array of connection to physic db
+     * @see CycleAdapter::$dbConfigs
      *
      * @var array
      */
